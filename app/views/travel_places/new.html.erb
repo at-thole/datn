@@ -1,0 +1,46 @@
+<div class="page-container">
+  <section class="site-section site-section-light site-section-top
+    themed-background-dark">
+    <div class="container text-center">
+      <h1 class="animation-slideDown">
+        <strong><%= "Create Travel Place" %></strong>
+      </h1>
+    </div>
+  </section>
+</div>
+<section class="site-content site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <%= form_for @travel do |f| %>
+          <%= render "shared/error_messages", object: f.object %>
+
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control" %><br >
+
+          <%= f.label :address %>
+          <%= f.text_field :address, class: "form-control" %><br >
+
+          <%= f.label :cost %>
+          <%= f.number_field :cost, min: 0, class: "form-control",
+            placeholder: "Input cost" %><br >
+
+          <%= f.label :description %>
+          <%= f.cktext_area :description %><br >
+
+          <%= f.label :category %>
+          <%= f.select :category_id, options_for_select(@categories.collect{|category| [category.name, category.id]}), {}, class: "form-control" %><br >
+
+          <%= f.label :city %>
+          <%= f.select :city_id, options_for_select(@cities.collect{|city| [city.name,
+            city.id]}), {}, class: "form-control" %><br >
+
+          <%= f.label :avatar %>
+          <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png" %><br >
+
+          <%= f.submit "submit", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

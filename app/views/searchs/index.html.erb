@@ -1,0 +1,28 @@
+<div class="page-container">
+  <section class="site-section site-section-light site-section-top
+    themed-background-dark">
+    <div class="container text-center">
+      <h1 class="animation-slideDown">
+        <strong><%= "Search" %></strong>
+      </h1>
+    </div>
+  </section>
+</div>
+<section class="site-content site-section">
+  <div class="container">
+    <%= form_for :search, url: searchs_path, remote: true do |f| %>
+      <div class="input-group input-group-lg">
+        <%= f.select :city, options_for_select([["An Giang", "An_Giang"], ["Đà Nẵng", "Da_Nang"], ["Hà Nội", "Ha_Noi"], ["Tp.Hồ Chí Minh", "Ho_Chi_Minh"]]), {prompt: "Please select"}, class: "form-control" %>
+        <%= f.select :topic, options_for_select([["Bạn Bè", "Ban_Be"], ["Công Tác", "Cong_Tac"], ["Gia Đình", "Gia_Dinh"], ["Người Yêu", "Nguoi_Yeu"]]), {prompt: "Please select"}, class: "form-control" %>
+        <%= f.select :content, options_for_select([["Sông Nước", "Song_Nuoc)"],
+          ["Đồi Núi", "Doi_Nui"], ["Dài Ngày", "Dai_Ngay"], ["Ngắn Ngày", "Ngan_Ngay"]]), {prompt: "Please select"}, class: "form-control"
+        %>
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search">Search</i></button>
+        </div>
+      </div>
+    <% end %>
+    <div id="rs-search">
+    </div>
+  </div>
+</section>

@@ -1,0 +1,5 @@
+<% if @travel_places.length > 0 %>
+  $('#rs-search').html('<%= j render partial: "result_search", locals: {travel_places: @travel_places} %>');
+<% else %>
+  $('#rs-search').html('No data');
+<% end %>

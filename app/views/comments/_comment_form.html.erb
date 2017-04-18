@@ -1,0 +1,39 @@
+<% if user_signed_in? %>
+  <div class="avatar-comment">
+    <%= image_tag current_user.avatar %>
+  </div>
+  <div class="form-cmt">
+  <%= form_for @comment, remote: true do |f| %>
+      <div id="comment-form">
+        <div id="comment-text">
+          <%= f.text_area :content, class: "text_comment",
+            placeholder: "Enter comment" %>
+          <%= f.hidden_field :travel_place_id , value: travel_place.id %>
+        </div>
+        <span id="submit">
+          <%= f.submit "Comment", class: "btn btn-primary" %>
+        </span>
+        <div class="clr"></div>
+      </div>
+    <% end %>
+  </div>
+  <div class="clr"></div>
+<% else %>
+  <div class="form-cmt">
+  <%= form_for @comment, remote: true do |f| %>
+      <div id="comment-form">
+        <div id="comment-text">
+          <%= f.text_area :content, class: "text_comment",
+            placeholder: "Enter comment" %>
+          <%= f.hidden_field :travel_place_id , value: travel_place.id %>
+        </div>
+        <span id="submit">
+          <%= link_to "Login to comment", user_session_path,
+            class: "btn btn-primary" %>
+        </span>
+        <div class="clr"></div>
+      </div>
+    <% end %>
+  </div>
+  <div class="clr"></div>
+<% end %>

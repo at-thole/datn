@@ -1,0 +1,45 @@
+<div id="page-container">
+  <div class="media-container">
+    <section class="site-section site-section-light site-section-top">
+      <div class="container text-center">
+        <h1 class="animation-slideDown">
+          <strong><%= t "welcome" %></strong>
+        </h1>
+        <h2 class="h3 animation-slideUp hidden-xs">
+          <%= t "explore_product" %>
+        </h2>
+      </div>
+    </section>
+    <%= image_tag "store_home.jpg", class: "media-image animation-pulseSlow" %>
+  </div>
+  <section class="site-content site-section">
+    <div class="container">
+      <div class="site-block col-md-12">
+        <%= search_form_for @q, url: search_travel_places_path ,
+          html: { method: :post }, remote: true do |f| %>
+          <div class="input-group input-group-lg">
+            <%= f.select :city_name_cont, options_for_select(@cities.map{ |city| city.name }), {prompt: "Select city"}, class: "form-control" %>
+            <%= f.select :category_name_cont, options_for_select(@categories.map{
+              |cate| cate.name }), {prompt: "Select category"}, class: "form-control"
+            %>
+            <%= f.text_field :name_or_description_cont, class: "form-control",
+              placeholder: "Enter travel place" %>
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="clr"></div>
+      <h2 class="site-heading">
+        <strong><%= t "all" %></strong> <%= "Travel Places" %>
+      </h2>
+      <div class="row store-items" id="all-travels">
+        <%= render partial: 'travel_places', locals: {travel_places: @travel_places} %>
+      </div>
+    </div>
+  </section>
+</div>
+<%= link_to "#", id: "to-top" do %>
+  <i class="fa fa-angle-up"></i>
+<% end %>

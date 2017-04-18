@@ -1,0 +1,19 @@
+<table>
+  <caption>table title and/or explanatory text</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% travel_places.each do |travel| %>
+      <tr>
+        <td><%= travel.name %><%= travel.avatar %></td>
+        <td><%= travel.address %></td>
+        <td><%= travel.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

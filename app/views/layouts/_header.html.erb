@@ -1,0 +1,38 @@
+<header>
+  <div class="container">
+    <%= link_to root_path, class: "site-logo" do %>
+      <strong><%= t "home" %></strong>
+    <% end %>
+    <nav>
+      <ul class="site-nav">
+        <% if user_signed_in? %>
+          <li>
+            <a href="javascript:void(0)" class="site-nav-sub">
+              <i class="glyphicon glyphicon-user site-nav-arrow"></i>
+              <%= current_user.username %>
+            </a>
+            <ul>
+              <li>
+                <%= link_to "Create travel place", new_travel_place_path %>
+              </li>
+              <li>
+                <%= link_to "Profile", edit_user_registration_path %>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "Login", new_user_session_path %>
+          </li>
+          <li>
+            <%= link_to "Signup", new_user_registration_path %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>

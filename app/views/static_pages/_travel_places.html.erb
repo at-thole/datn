@@ -1,0 +1,23 @@
+<% travel_places.each do |travel_place| %>
+  <div class="col-md-4 travel-item">
+    <div class="store-item">
+      <div class="travel-img">
+        <%= link_to travel_place_path(travel_place) do %>
+          <%= image_tag travel_place.avatar, class: "img-responsive"%>
+        <% end %>
+      </div>
+      <div class="store-item-info clearfix">
+        <span class="store-item-price themed-color-dark pull-right"
+          data-element-offset="-1000">
+          <%= number_with_delimiter travel_place.cost %>
+        </span>
+        <strong>
+          <%= link_to travel_place.name, travel_place_path(travel_place) %>
+        </strong><br>
+        <small>
+          <%= travel_place.description.html_safe %>
+        </small>
+      </div>
+    </div>
+  </div>
+<% end %>

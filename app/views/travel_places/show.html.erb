@@ -1,0 +1,43 @@
+<div class="page-container">
+  <section class="site-section site-section-light site-section-top
+    themed-background-dark">
+    <div class="container text-center">
+      <h1 class="animation-slideDown">
+        <strong><%= @travel_place.name %></strong>
+      </h1>
+    </div>
+  </section>
+</div>
+<section class="site-content site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="image-show">
+          <%= image_tag @travel_place.avatar %>
+        </div>
+        <div class="infor-show">
+          <h2><strong><%= t "name" %>: <%= @travel_place.name %></strong></h2>
+          <h3><strong><%= t "address" %>: <%= @travel_place.address %></strong></h3>
+          <strong>Description</strong>:
+          <%= @travel_place.description.html_safe %><br /><br /><br />
+          <% if @value_rate.present? %>
+            <div id="rateit_star" data-rateit-readonly="true"
+              data-rateit-value="<%= @value_rate.num_rate %>"></div>
+          <% else %>
+            <div id="rateit_star"></div>
+          <% end %>
+          <%= form_for @rate, remote: true do |f| %>
+            <%= f.hidden_field :num_rate, id: :star_rs %>
+            <%= f.hidden_field :travel_place_id, value: @travel_place.id %>
+          <% end %>
+          <p><%= t "ratings"%> <%= @travel_place.avg_rate %></p>
+        </div>
+      </div>
+    </div>
+    <div class="comment col-md-10 col-md-offset-1">
+      <h3><%= "Comment" %></h3>
+      <%= render partial: "comments/comment",
+        locals: {comments: @comments, travel_place: @travel_place} %>
+    </div>
+  </div>
+</section>

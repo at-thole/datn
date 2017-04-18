@@ -1,0 +1,51 @@
+<div id="page-content">
+  <div class="block full">
+    <div class="block-title">
+      <h2><strong>Categories</strong></h2>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <button type = "button" class = "btn btn-info" data-toggle = "modal"
+          data-target = "#addCategory">New Category</button>
+        <hr>
+        <div class="table-responsive">
+          <table class="table table-vcenter table-striped">
+            <tr>
+              <th class="text-center">STT</th>
+              <th class="text-center">Name</th>
+              <th class="text-center">Action</th>
+            </tr>
+            <% @categories.each_with_index do |category, index| %>
+              <tr>
+                <td class="text-center"><%= index + 1 %></td>
+                <td class="text-center"><%= category.name %></td>
+                <td class="text-center">
+                  <%= link_to edit_admin_category_path(category),
+                    class: "btn btn-default" do %>
+                    <i class="fa fa-pencil">Edit</i>
+                  <% end %>
+                  <%= link_to admin_category_path(category), method: :delete,
+                    data: {confirm: "Are you sure ?"}, remote: true, class: "btn btn-danger" do %>
+                    <i class="fa fa-times">Delete</i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+        <%= will_paginate %>
+        <div id = "addCategory" class = "modal fade" role = "dialog">
+          <div class = "modal-dialog modal-xs">
+            <div class = "modal-content">
+              <%= render "admin/categories/form_category" %>
+              <div class = "modal-footer">
+                <button type = button" class = "btn btn-default"
+                  data-dismiss = "modal"><%= t "close" %></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
